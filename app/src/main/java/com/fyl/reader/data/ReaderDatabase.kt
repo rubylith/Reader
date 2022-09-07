@@ -35,7 +35,7 @@ abstract class ReaderDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): ReaderDatabase {
-            LogUtils.d(true, TAG, "buildDatabase()")
+            LogUtils.d(TAG, "buildDatabase()")
             return Room.databaseBuilder(context, ReaderDatabase::class.java, DATABASE_NAME)
                 .addCallback(
                     object : RoomDatabase.Callback() {

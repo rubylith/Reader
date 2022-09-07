@@ -1,115 +1,70 @@
 package com.fyl.reader.utils
 
 import android.util.Log
-import com.fyl.reader.BuildConfig
+
+private const val TAG = "Reader"
+private var DEBUG = Log.isLoggable(TAG, Log.DEBUG)
 
 object LogUtils {
-
-    private const val TAG = "Reader"
-    private var DEBUG = BuildConfig.DEBUG
-
     @JvmStatic
-    fun v(tag: String, msg: String) {
-        if (DEBUG) {
-            Log.v(TAG, "$tag # $msg")
-        }
+    fun d(msg: String, tr: Throwable? = null) {
+        Log.d(TAG, msg, tr)
     }
 
     @JvmStatic
-    fun v(debug: Boolean, tag: String, msg: String) {
-        if (debug) {
-            v(tag, msg)
-        }
+    fun d(tag: String, msg: String, tr: Throwable? = null) {
+        Log.d(TAG, "$tag # $msg", tr)
     }
 
     @JvmStatic
-    fun d(msg: String) {
-        if (DEBUG) {
-            Log.d(TAG, msg)
-        }
+    fun w(msg: String, tr: Throwable? = null) {
+        Log.w(TAG, msg, tr)
     }
 
     @JvmStatic
-    fun d(tag: String, msg: String) {
-        if (DEBUG) {
-            Log.d(TAG, "$tag # $msg")
-        }
+    fun w(tag: String, msg: String, tr: Throwable? = null) {
+        Log.w(TAG, "$tag # $msg", tr)
     }
 
     @JvmStatic
-    fun d(debug: Boolean, tag: String, msg: String) {
-        if (debug) {
-            d(tag, msg)
-        }
+    fun e(msg: String, tr: Throwable? = null) {
+        Log.e(TAG, msg, tr)
     }
 
     @JvmStatic
-    fun i(tag: String, msg: String) {
-        if (DEBUG) {
-            Log.i(TAG, "$tag # $msg")
-        }
+    fun e(tag: String, msg: String, tr: Throwable? = null) {
+        Log.e(TAG, "$tag # $msg", tr)
+    }
+}
+
+object Loggable {
+    @JvmStatic
+    fun d(msg: String, tr: Throwable? = null) {
+        if (DEBUG) Log.d(TAG, msg, tr)
     }
 
     @JvmStatic
-    fun i(debug: Boolean, tag: String, msg: String) {
-        if (debug) {
-            i(tag, msg)
-        }
+    fun d(tag: String, msg: String, tr: Throwable? = null) {
+        if (DEBUG) Log.d(TAG, "$tag # $msg", tr)
     }
 
     @JvmStatic
-    fun w(tag: String, msg: String) {
-        if (DEBUG) {
-            Log.w(TAG, "$tag # $msg")
-        }
+    fun w(msg: String, tr: Throwable? = null) {
+        if (DEBUG) Log.w(TAG, msg, tr)
     }
 
     @JvmStatic
-    fun w(debug: Boolean, tag: String, msg: String) {
-        if (debug) {
-            w(tag, msg)
-        }
+    fun w(tag: String, msg: String, tr: Throwable? = null) {
+        if (DEBUG) Log.w(TAG, "$tag # $msg", tr)
     }
 
     @JvmStatic
-    fun e(tag: String, msg: String) {
-        if (DEBUG) {
-            Log.e(TAG, "$tag # $msg")
-        }
+    fun e(msg: String, tr: Throwable? = null) {
+        if (DEBUG) Log.e(TAG, msg, tr)
     }
 
     @JvmStatic
-    fun e(debug: Boolean, tag: String, msg: String) {
-        if (debug) {
-            e(tag, msg)
-        }
-    }
-
-    @JvmStatic
-    fun e(tag: String, msg: String, tr: Throwable) {
-        if (DEBUG) {
-            Log.e(TAG, "$tag # $msg", tr)
-        }
-    }
-
-    @JvmStatic
-    fun e(debug: Boolean, tag: String, msg: String, tr: Throwable) {
-        if (debug) {
-            e(tag, msg, tr)
-        }
-    }
-
-    @JvmStatic
-    fun showTrace(tag: String, msg: String) {
-        if (DEBUG) {
-            d(tag, "$msg \n ${Log.getStackTraceString(Throwable())}")
-        }
-    }
-
-    @JvmStatic
-    fun showTrace(debug: Boolean, tag: String, msg: String) {
-        if (debug) {
-            showTrace(tag, msg)
-        }
+    fun e(tag: String, msg: String, tr: Throwable? = null) {
+        if (DEBUG) Log.e(TAG, "$tag # $msg", tr)
     }
 }

@@ -9,8 +9,17 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.StringRes
+import com.fyl.reader.data.ReaderDatabase
+import com.fyl.reader.data.User
+import com.fyl.reader.data.keyUserFile
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.google.gson.stream.JsonReader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.lang.Exception
 import java.lang.RuntimeException
 
 object Utils {
@@ -19,25 +28,6 @@ object Utils {
     fun getActivityByView(v: View): Activity? {
         return v.context.let {
             if (it is Activity) it else null
-        }
-    }
-
-    @JvmStatic
-    fun <T> getOverrideObject(context: Context, clazz: Class<T>, @StringRes resId: Int): T {
-        context.getString(resId).takeIf { it.isNotEmpty() }?.let {
-            try {
-                Class.forName(it)?.getDeclaredConstructor(Context::class.java)?.newInstance(context)?.let { obj ->
-                    return clazz.cast(obj) as T
-                }
-            } catch (e: Exception) {
-                LogUtils.d("getOverrideObject() Bad override obj: $e")
-            }
-        }
-
-        return try {
-            clazz.newInstance()
-        } catch (e: Exception) {
-            throw RuntimeException(e)
         }
     }
 
@@ -94,18 +84,15 @@ object Utils {
     }
 
     @JvmStatic
-    fun saveIconToCacheDir(context: Context, icon: Bitmap): File? {
-        try {
-            val iconFile = File(context.cacheDir, "icon.png")
-            val fileOS = FileOutputStream(iconFile)
-            icon.compress(Bitmap.CompressFormat.PNG, 100, fileOS)
-            fileOS.flush()
-            fileOS.close()
-            return iconFile
-        } catch (e: java.lang.Exception) {
-            LogUtils.d("saveIconToCacheDir() Failed: ${e.stackTrace}")
+    suspend fun saveIconToCacheDir(context: Context, icon: Bitmap): Result<File> = withContext(Dispatchers.IO) {
+        runCatching {
+            File(context.cacheDir, "icon.png").also {
+                val fileOS = FileOutputStream(it)
+                icon.compress(Bitmap.CompressFormat.PNG, 100, fileOS)
+                fileOS.flush()
+                fileOS.close()
+            }
         }
-        return null
     }
 
     @JvmStatic
