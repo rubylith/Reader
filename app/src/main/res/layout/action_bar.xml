@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/action_bar_height"
+        android:background="@color/colorPrimary">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_margin_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/action_bar_margin" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            style="@style/ImageButton"
+            android:id="@+id/action_bar_up"
+            android:src="@drawable/ic_up"
+            android:contentDescription="@string/back"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            style="@style/ImageButton"
+            android:id="@+id/action_bar_menu"
+            android:src="@drawable/ic_menu"
+            android:contentDescription="@string/menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="guideline_margin_start, action_bar_up, action_bar_menu" />
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/action_bar_height"
+            app:layout_constrainedWidth="true"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="20sp"
+            android:text="@string/app_name"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/barrier_left"
+            app:layout_constraintEnd_toStartOf="@id/barrier_right"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left"
+            app:constraint_referenced_ids="guideline_margin_end, action_bar_add" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_margin_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/action_bar_margin" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            style="@style/ImageButton"
+            android:id="@+id/action_bar_add"
+            android:src="@drawable/ic_add"
+            android:contentDescription="@string/add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

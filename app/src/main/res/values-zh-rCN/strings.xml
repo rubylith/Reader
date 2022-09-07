@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">阅读器</string>
+    <string name="on">"开启"</string>
+    <string name="off">"关闭"</string>
+    <string name="back">"返回"</string>
+    <string name="menu">"菜单"</string>
+    <string name="add">"添加"</string>
+    <string name="bookshelf">"书架"</string>
+    <string name="settings">"设置"</string>
+    <string name="file_explorer">"文件资源管理器"</string>
+</resources>

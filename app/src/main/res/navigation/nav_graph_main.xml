@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/bookshelf_fragment">
+
+    <fragment
+        android:id="@+id/bookshelf_fragment"
+        android:name="com.fyl.reader.bookshelf.BookshelfFragment"
+        android:label="@string/bookshelf"
+        tools:layout="@layout/fragment_bookshelf">
+
+        <action
+            android:id="@+id/action_bookshelfFragment_to_settingsFragment"
+            app:destination="@id/settings_fragment" />
+
+        <action
+            android:id="@+id/action_bookshelfFragment_to_fileExplorerFragment"
+            app:destination="@id/file_explorer_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.fyl.reader.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/file_explorer_fragment"
+        android:name="com.fyl.reader.file.explorer.FileExplorerFragment"
+        android:label="@string/file_explorer"
+        tools:layout="@layout/fragment_file_explorer" />
+</navigation>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Reader</string>
+    <string name="on">"On"</string>
+    <string name="off">"Off"</string>
+    <string name="back">"Back"</string>
+    <string name="menu">"Menu"</string>
+    <string name="add">"Add"</string>
+    <string name="bookshelf">"Bookshelf"</string>
+    <string name="settings">"Settings"</string>
+    <string name="file_explorer">"File Explorer"</string>
+    <string name="permission_rationale_message">"We need your permission to access your files\n and display them to you"</string>
+    <string name="permission_request_label">"Give permission"</string>
+    <string name="go_parent_label">"⬆️ Parent folder"</string>
+    <string name="folder_item">🗂 %1$s</string>
+    <string name="file_item">📄 %1$s</string>
+</resources>
