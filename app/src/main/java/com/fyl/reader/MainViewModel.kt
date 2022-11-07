@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.Gravity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fyl.reader.data.*
+import com.fyl.reader.utils.STATE_ACTION_BAR_ADD_SHOW
+import com.fyl.reader.utils.STATE_ACTION_BAR_MENU_SHOW
+import com.fyl.reader.utils.STATE_ACTION_BAR_SHOW
 import com.tencent.mmkv.MMKV
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

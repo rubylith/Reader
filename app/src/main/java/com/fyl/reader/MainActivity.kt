@@ -8,17 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import com.fyl.reader.base.FragmentCallback
+import com.fyl.reader.base.BaseFragment
 import com.fyl.reader.databinding.ActionBarBinding
 import com.fyl.reader.databinding.ActivityMainBinding
-import com.fyl.reader.utils.LogUtils
+import com.fyl.reader.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MainActivity"
-const val STATE_ACTION_BAR_SHOW = 1 shl 0
-const val STATE_ACTION_BAR_UP_SHOW = 1 shl 1
-const val STATE_ACTION_BAR_MENU_SHOW = 1 shl 2
-const val STATE_ACTION_BAR_ADD_SHOW = 1 shl 3
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -75,7 +71,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onBackPressed() {
         val fragment = binding.navHostFragment.getFragment<NavHostFragment>().childFragmentManager.primaryNavigationFragment
-        if (fragment !is FragmentCallback || !fragment.onBackPressed()) {
+        if (fragment !is BaseFragment<*> || !fragment.onBackPressed()) {
             super.onBackPressed()
         }
     }

@@ -18,17 +18,19 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.fyl.reader.*
 import com.fyl.reader.utils.LogUtils
+import com.fyl.reader.utils.STATE_ACTION_BAR_ADD_SHOW
+import com.fyl.reader.utils.STATE_ACTION_BAR_MENU_SHOW
+import com.fyl.reader.utils.STATE_ACTION_BAR_SHOW
 import javax.inject.Inject
 
-private const val TAG = "BaseFragment"
+open class BaseFragment<VDB : ViewDataBinding> : Fragment(), DefaultLifecycleObserver {
 
-open class BaseFragment<VDB : ViewDataBinding> : Fragment(), DefaultLifecycleObserver, FragmentCallback {
-
-    protected val sharedViewModel: MainViewModel by activityViewModels()
+    protected val TAG = javaClass.simpleName
+    private val sharedViewModel: MainViewModel by activityViewModels()
     protected lateinit var binding: VDB
     @Inject lateinit var applicationContext: Context
     protected var activityResultLauncher: ActivityResultLauncher<Intent>? = null
-    protected var permissionLauncher: ActivityResultLauncher<String>? = null
+    private var permissionLauncher: ActivityResultLauncher<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<Fragment>.onCreate(savedInstanceState)
@@ -94,9 +96,5 @@ open class BaseFragment<VDB : ViewDataBinding> : Fragment(), DefaultLifecycleObs
 
     open fun setupUI() {}
     open fun observeViewModel() {}
-    override fun onBackPressed(): Boolean { return false; }
-}
-
-interface FragmentCallback {
-    fun onBackPressed(): Boolean
+    open fun onBackPressed(): Boolean { return false; }
 }

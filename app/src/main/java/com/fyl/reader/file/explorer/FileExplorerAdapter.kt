@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.fyl.reader.R
 import com.fyl.reader.base.BaseAdapter
-import com.fyl.reader.base.BaseViewHolder
 import com.fyl.reader.databinding.FileExplorerListItemBinding
 import java.io.File
 
@@ -33,7 +32,7 @@ class FileExplorerAdapter : BaseAdapter<File, FileExplorerViewHolder>() {
 
 class FileExplorerViewHolder(
     val binding: FileExplorerListItemBinding
-) : BaseViewHolder(binding) {
+) : BaseAdapter.ViewHolder(binding) {
 
     private val context = binding.root.context
 

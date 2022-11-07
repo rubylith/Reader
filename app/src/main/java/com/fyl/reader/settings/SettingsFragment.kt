@@ -2,10 +2,10 @@ package com.fyl.reader.settings
 
 import androidx.fragment.app.viewModels
 import com.fyl.reader.R
-import com.fyl.reader.STATE_ACTION_BAR_SHOW
-import com.fyl.reader.STATE_ACTION_BAR_UP_SHOW
 import com.fyl.reader.base.BaseFragment
 import com.fyl.reader.databinding.FragmentSettingsBinding
+import com.fyl.reader.utils.STATE_ACTION_BAR_SHOW
+import com.fyl.reader.utils.STATE_ACTION_BAR_UP_SHOW
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

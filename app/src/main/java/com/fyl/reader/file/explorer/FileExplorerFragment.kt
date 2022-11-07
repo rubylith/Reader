@@ -7,11 +7,11 @@ import androidx.activity.result.ActivityResult
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fyl.reader.R
-import com.fyl.reader.STATE_ACTION_BAR_SHOW
-import com.fyl.reader.STATE_ACTION_BAR_UP_SHOW
 import com.fyl.reader.base.AdapterFragment
 import com.fyl.reader.databinding.FragmentFileExplorerBinding
 import com.fyl.reader.utils.PermissionUtils
+import com.fyl.reader.utils.STATE_ACTION_BAR_SHOW
+import com.fyl.reader.utils.STATE_ACTION_BAR_UP_SHOW
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 

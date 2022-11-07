@@ -13,8 +13,8 @@ import com.google.gson.stream.JsonReader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-const val keyUserFile = "keyUserFile"
-const val userFile = "user.json"
+const val KEY_USERS = "users"
+const val USERS = "Users.json"
 
 /**
  * The room database for this app
@@ -42,7 +42,7 @@ abstract class ReaderDatabase : RoomDatabase() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
                             val request = OneTimeWorkRequestBuilder<ReaderDatabaseWorker>()
-                                    .setInputData(workDataOf(keyUserFile to userFile))
+                                    .setInputData(workDataOf(KEY_USERS to USERS))
                                     .build()
                             WorkManager.getInstance(context).enqueue(request)
                         }
@@ -59,7 +59,7 @@ class ReaderDatabaseWorker(
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         val result = runCatching {
-            inputData.getString(keyUserFile)?.takeIf { it.isNotEmpty() }?.let { filename ->
+            inputData.getString(KEY_USERS)?.takeIf { it.isNotEmpty() }?.let { filename ->
                 applicationContext.assets.open(filename).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val userType = object : TypeToken<List<User>>() {}.type
