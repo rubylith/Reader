@@ -8,19 +8,10 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.annotation.StringRes
-import com.fyl.reader.data.ReaderDatabase
-import com.fyl.reader.data.User
-import com.fyl.reader.data.keyUserFile
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
-import java.lang.Exception
-import java.lang.RuntimeException
 
 object Utils {
 
