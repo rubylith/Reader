@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log.DEBUG
 import android.util.Log.ERROR
 import androidx.work.Configuration
+import com.fyl.plugin.core.PluginManagerWrapper
 import com.fyl.reader.utils.LogUtils
 import com.tencent.mmkv.MMKV
 import dagger.hilt.android.HiltAndroidApp
@@ -21,6 +22,7 @@ class ReaderApplication : Application(), Configuration.Provider {
         LogUtils.d(TAG, "ReaderApplication is created")
         application = this
         MMKV.initialize(this)
+        PluginManagerWrapper.getInstance(this).init()
     }
 
     companion object {

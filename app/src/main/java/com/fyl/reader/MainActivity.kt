@@ -1,13 +1,18 @@
 package com.fyl.reader
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import com.fyl.plugin.core.PluginListener
+import com.fyl.plugin.core.PluginManagerWrapper
+import com.fyl.plugin.test.IPluginTest
 import com.fyl.reader.base.BaseFragment
 import com.fyl.reader.databinding.ActionBarBinding
 import com.fyl.reader.databinding.ActivityMainBinding
@@ -24,12 +29,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var actionBarBinding: ActionBarBinding
     private lateinit var navController: NavController
 
+    private val pluginListener: PluginListener<IPluginTest> =
+        object : PluginListener<IPluginTest> {
+
+            override fun onPluginConnected(plugin: IPluginTest, pluginContext: Context) {
+                Log.d(TAG, "onPluginConnected: sum=${plugin.getSum()} view=${plugin.getView()}")
+            }
+
+            override fun onPluginDisconnected(plugin: IPluginTest) {
+                super.onPluginDisconnected(plugin)
+                Log.d(TAG, "onPluginDisconnected: ")
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         actionBarBinding = binding.actionBar
         setListener()
         observeViewModel()
+        PluginManagerWrapper.getInstance(this).addPluginListener(IPluginTest::class.java, pluginListener)
     }
 
     override fun onStart() {
@@ -74,5 +93,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (fragment !is BaseFragment<*> || !fragment.onBackPressed()) {
             super.onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        PluginManagerWrapper.getInstance(this).removePluginListener(pluginListener)
     }
 }
