@@ -1,5 +1,6 @@
 package com.fyl.reader.base
 
+import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
@@ -7,9 +8,10 @@ abstract class BaseAdapter<D, VH : BaseAdapter.ViewHolder> : RecyclerView.Adapte
     protected var data: List<D>? = null
     protected var callback: Callback<D>? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(data: List<D>) {
         this.data = data
-        notifyItemRangeChanged(0, data.size)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

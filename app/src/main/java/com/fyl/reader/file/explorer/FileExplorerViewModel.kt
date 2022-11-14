@@ -18,7 +18,7 @@ class FileExplorerViewModel @Inject constructor(
     var filesList: MutableLiveData<List<File>> = MutableLiveData<List<File>>()
     var currentDirectory: File? = null
     private var getFilesListJob: Job? = null
-    val topDirectory = Environment.getExternalStorageDirectory()
+    val topDirectory: File? = Environment.getExternalStorageDirectory()
 
     fun open(selectedItem: File) {
         if (selectedItem.isFile) {
