@@ -75,7 +75,7 @@ class FileExplorerFragment : AdapterFragment<FragmentFileExplorerBinding, File>(
     }
 
     override fun onBackPressed(): Boolean {
-        return if (viewModel.isInTopDirectory()) {
+        return if (viewModel.isInTopDirectory() || !hasPermission) {
             false
         } else {
             viewModel.currentDirectory?.parentFile?.let {

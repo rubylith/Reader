@@ -47,6 +47,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    sourceSets {
+        main {
+            java.srcDirs += "../plugin/src"
+        }
+    }
 }
 
 hilt {
